@@ -1,25 +1,9 @@
-#!/usr/bin/env groovy
-
 pipeline {
-
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
-    }
-
+    agent { docker 'maven:3.3.3' }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building...'
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh 'npm test'
+                sh 'mvn --version'
             }
         }
     }
